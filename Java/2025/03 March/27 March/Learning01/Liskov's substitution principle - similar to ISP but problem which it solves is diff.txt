@@ -1,0 +1,118 @@
+/*****
+ *
+ * Liskov's substitution principle
+ *
+ * statement can be derived from the name itself
+ *
+ * "    in a code / program
+ *  objects of a class can be replaced by
+ *  objects of a subclass of that class without altering the behaviour of the program
+ *  like any exception or something
+ *  output can be different that is fine
+ *  "
+ * ***/
+
+abstract class BankAccount {
+
+    int balance ;
+
+    public BankAccount(int balance) {
+        this.balance = balance;
+    }
+
+    public int displayBalance() {
+        return balance;
+    }
+
+    abstract public void withDrawAmount(int amount) ;
+
+}
+
+
+class SavingsAccount extends BankAccount {
+
+    public SavingsAccount(int balance ) {
+        super(balance);
+    }
+
+    @Override
+    public void withDrawAmount(int amount) {
+        super.balance = super.balance - amount;
+        System.out.println("new balance = " + super.balance);
+    }
+}
+
+class FixedDepositAccount extends BankAccount {
+
+    public FixedDepositAccount(int balance ) {
+        super(balance);
+    }
+
+    @Override
+    public void withDrawAmount(int amount) {
+        throw new RuntimeException("cannot withdraw from FD account");
+    }
+
+}
+
+
+/*****
+ *
+ * The solution to this is similar to interface segration principle
+ * */
+
+
+abstract class BankAccount1 {
+
+    int balance ;
+
+    public BankAccount1(int balance) {
+        this.balance = balance;
+    }
+
+    public int displayBalance() {
+        return balance;
+    }
+
+}
+
+interface WithdrawAble {
+
+    public void withDrawAmount(int amount) ;
+}
+
+
+
+class SavingsAccount1 extends BankAccount1 implements WithdrawAble {
+
+    public SavingsAccount1(int balance ) {
+        super(balance);
+    }
+
+    @Override
+    public void withDrawAmount(int amount) {
+        super.balance = super.balance - amount;
+        System.out.println("new balance = " + super.balance);
+    }
+}
+
+class FixedDepositAccount1 extends BankAccount1 {
+
+    public FixedDepositAccount1(int balance ) {
+        super(balance);
+    }
+
+
+}
+
+
+/***
+ * Solution for both Liskov and ISP are same
+ * but the problem they are solving is diffferent
+ *
+ * Liskov -> making replacement of a class with subclass happen without changing behaviour
+ * ISP -> does not force clients to implement methods they dont need to
+ *
+ * Solution :- instead of one big fat interface / abstract class segrate it into multiple interfaces
+ * */
+
