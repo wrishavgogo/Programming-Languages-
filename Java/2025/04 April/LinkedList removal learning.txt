@@ -1,0 +1,10 @@
+Important learning in this code , during recursion i was wondering how , after the backtrack process 
+
+ positionList.add(j); // adding in the list
+ backTrack(queensPlaced + 1 , positionList  , n);
+ positionList.removeLast(); // removing from the list O(1) 
+
+when we declare List<Integer> positionList = new LinkedList<>();
+LinkedList gives us a function removeLast() or removeFirst() whichever we do takes O(1) operation 
+
+also one more important learning , in ArrayList -> list.remove(list.size() - 1 ) -> is O(1) operation and not O(n) operation 
