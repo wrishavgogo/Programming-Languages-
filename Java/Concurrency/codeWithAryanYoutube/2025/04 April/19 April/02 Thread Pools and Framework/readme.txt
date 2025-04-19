@@ -70,3 +70,6 @@ same as submit , only here you get the list of futures youself and you dont have
 ExecutorService exe = Executors.scheduledThreadPool(5);
 exe.submit( ()-> return "cron job ran" , 2 , TimeUnit.Minutes) ; -- > will run every 2 mins   -----> wrong my bad i did a mistake the method is not submit 
 exe.schedule( () -> your callable or runnable , delay , TimeUnit); --> will run as per the schedule is provided 
+
+
+Lastly there is Executors.singleThreadExecutor() --> which probaby redis uses , single thread is only there , Redis is written in C
