@@ -62,3 +62,10 @@ executor.invokeAll(tasks, 2, TimeUnit.SECONDS);
 
 
 same as submit , only here you get the list of futures youself and you dont have to create it 
+
+
+
+
+* Now there is also scheduledThreadPoolExecutors , we can use this while creating Kafka , for polling in consumers 
+ExecutorService exe = Executors.scheduledThreadPool(5);
+exe.submit( ()-> return "cron job ran" , 2 , TimeUnit.Minutes) ; -- > will run every 2 mins 
