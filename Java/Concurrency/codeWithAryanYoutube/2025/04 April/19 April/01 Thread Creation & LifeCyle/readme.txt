@@ -13,3 +13,10 @@ In new Thread(new runnable()) can be passed but not new Callable() as it has no 
 4. difference b/w -> sleep(time)[sleep until time seconds , does not release locks] & wait()->[waits until notify() method is called , releases locks]
 
 5. when notify()/notifyAll() is called immediately thread does not start running , it is moved into ready queue to get CPU opputunity
+
+
+
+
+in Thread class there is a method called interrupt() 
+if you call Thread.interrupt() then it throws a InterruptedException , which has to be handled in the caller of the thread 
+when you do a thread.start() internally it calls the run() method of the thread . 
